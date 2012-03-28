@@ -12,7 +12,7 @@ $postdata = file_get_contents("php://input");
 
 $data = json_decode($postdata,true);
 
-$string = "<".$data["from"]."> " .$data["text"];
+$string = "<".$data["from"].":".$data["time"]."> " .$data["text"];
 
 output(utf8_decode($string));
 
