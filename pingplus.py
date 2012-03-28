@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import usb.core
 import time
 import argparse
