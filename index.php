@@ -13,10 +13,14 @@ $postdata = file_get_contents("php://input");
 $data = json_decode($postdata,true);
 
 $string = "<".$data["from"].":".$data["time"]."> " .$data["text"];
+$string = utf8_decode($string); // For some reason, this is utf8-encoded twice?
+$string = iconv("UTF-8", "ISO-8859-1//TRANSLIT", $string); // convert with char matching
 
-output(utf8_decode($string));
+output($string);
 
 function output ($string, $count=0) {
+    setlocale(LC_CTYPE, "de_DE@euro"); // This is important to have escapeshellarg working properly
+
     $output = "/home/rzl/ping-plus-host/pingplus.py -c -s ".escapeshellarg($string);
 
     exec($output, $returnstring, $retval);
