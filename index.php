@@ -14,7 +14,7 @@ $data = json_decode($postdata,true);
 
 $string = "<".$data["from"].":".$data["time"]."> " .$data["text"];
 $string = utf8_decode($string); // For some reason, this is utf8-encoded twice?
-$string = iconv("UTF-8", "ISO-8859-1//TRANSLIT", $string); // convert with char matching
+$string = iconv("UTF-8", "ISO-8859-15//TRANSLIT", $string); // convert with char matching
 
 output($string);
 
